@@ -1,0 +1,16 @@
+package paprika.view;
+
+import paprika.controller.customerController;
+
+public class startView {
+
+	public static void main(String[] args) {
+		customerController cController = customerController.getInstance();
+		
+		System.out.println("---모든 구매 내역 확인---");
+		cController.getAllPurchase("a123");
+		
+		System.out.println("---특정 구매 내역 확인---");
+
+	}
+}
