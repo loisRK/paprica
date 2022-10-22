@@ -2,6 +2,7 @@ package paprika.controller;
 
 import java.sql.SQLException;
 
+import paprika.exception.NotExistException;
 import paprika.service.customerService;
 import paprika.service.purchaseService;
 import paprika.service.storeService;
@@ -19,13 +20,34 @@ public class customerController {
 	}
 	
 	// 이름으로 물건 검색
-	
+	public void getProductName(String productName) {
+		try {
+			customerEndview.productListView(proservice.getProductName(productName));
+		} catch (SQLException | NotExistException e) {
+			e.printStackTrace();
+			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
+		}
+	}
 	
 	// 카테고리별로 물건 검색
-	
+	public void getProductCategory(String productCategory) {
+		try {
+			customerEndview.productListView(proservice.getProductCategory(productCategory));
+		} catch (SQLException | NotExistException e) {
+			e.printStackTrace();
+			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
+		}
+	}
 	
 	// 가격으로 물건검색
-	
+	public void getProductPrice(int minPrice, int maxPrice) {
+		try {
+			customerEndview.productListView(proservice.getProductPrice(minPrice, maxPrice));
+		} catch (SQLException | NotExistException e) {
+			e.printStackTrace();
+			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
+		}
+	}
 	
 	// 모든 구매 내역 확인
 	public void getAllPurchase(String cusID) {
