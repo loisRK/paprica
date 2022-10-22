@@ -1,9 +1,22 @@
 package paprika.view;
 
 import java.util.ArrayList;
+
+import paprika.dto.productDTO;
 import paprika.dto.purchaseDTO;
 
 public class customerEndview {
+	
+	// 상품 출력
+		public static void productListView(ArrayList<productDTO> allProduct) {
+			int length = allProduct.size();
+			System.out.println("[검색 결과] 총 " + length + "개의 상품이 검색되었습니다.");
+			if (length != 0) {
+				for(int i = 0; i<length; i++) {
+					System.out.println(i +  ". " + allProduct.get(i));
+				}
+			}
+		}
 
 	//모든 프로젝트 출력
 	public static void allPurshase(ArrayList allOrder){
