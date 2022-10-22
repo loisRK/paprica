@@ -34,7 +34,7 @@ public class startView {
 		cusController.getPurchaseInfo("cus_id", "lois");
 		
 //		System.out.println("---제품 구매---");
-		
+//		cusController.newPurchase(productID, customerID);
 
 	}
 }

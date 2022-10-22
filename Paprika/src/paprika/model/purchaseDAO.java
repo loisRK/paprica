@@ -70,7 +70,7 @@ public class purchaseDAO {
 	}
 	
 	// 특정 주문 내역 조회
-	public static purchaseDTO getOnePurchase(String orderID) throws SQLException {
+	public static purchaseDTO getOnePurchase(int orderID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -79,7 +79,7 @@ public class purchaseDAO {
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select * from purchase where order_id = ?");
-			pstmt.setString(1, orderID);
+			pstmt.setInt(1, orderID);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				purchaseOne = new purchaseDTO(rset.getInt(1),
@@ -99,6 +99,7 @@ public class purchaseDAO {
 		return purchaseOne;
 	}
 	
+	// 특정 주문 내역 조회(어떤 정보로 검색할지 키워드 설정)
 	public static ArrayList<purchaseDTO> getSomePurchase(String colName, String colValue) throws SQLException {
 		Connection con = null;
 		Statement stmt = null;
@@ -148,5 +149,6 @@ public class purchaseDAO {
 		}
 		return false;
 	}
+	
 	
 }
