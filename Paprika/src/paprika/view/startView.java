@@ -26,7 +26,7 @@ public class startView {
 		
 		
 		
-		//		System.out.println("---모든 구매 내역 확인---");
+//		System.out.println("---모든 구매 내역 확인---");
 //		cusController.getAllPurchase("a123");
 		
 		System.out.println("---특정 구매 내역 확인---");
