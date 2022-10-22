@@ -16,26 +16,26 @@ public class storeService {
 	}
 	
 	// customer - CRUD
-	// »ç¾÷ÀÚ µî·Ï
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public boolean addStore(storeDTO store) throws SQLException{
 		storeDAO.addStore(store);
 		return true;
 	}
-	// »ç¾÷ÀÚ ¹øÈ£·Î »ç¾÷ÀÚ Á¶È¸ Á¶È¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½È¸
 	public storeDTO getStore(String storeName) throws SQLException, NotExistException{
 		return storeDAO.getStore(storeName);
 	}
-	// id¸¦ ÅëÇÑ »ç¾÷Àå ÁÖ¼Ò Á¤º¸ º¯°æÇÏ±â
+	// idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public boolean updateStoreAddress(String storeName,String storeAddress) throws SQLException, NotExistException{
-	return storeDAO.updateAddress(storeName,storeAddress);
+		return storeDAO.updateAddress(storeName,storeAddress);
 	}
 
 	
-	// id¸¦ ÅëÇÑ »ç¾÷Àå ÀüÈ­¹øÈ£ º¯°æÇÏ±â
+	// idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public boolean updatephoneNumber(String storeName,String storenumber) throws SQLException, NotExistException{
-	return storeDAO.updateAddress(storeName,storenumber);
+		return storeDAO.updateAddress(storeName,storenumber);
 	}	
-	// °³ÀÎÁ¤º¸ »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public boolean deleteStore(String storeName) throws SQLException, NotExistException{
 		return storeDAO.deleteStore(storeName);
 	}	
