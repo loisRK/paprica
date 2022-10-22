@@ -1,12 +1,12 @@
 package paprika.dto;
 
 public class productDTO {
-	private int proID;
-	private String storeID;
-	private String proName;
-	private String proCategory;
-	private int proPrice;
-	private int proCnt;
+	private int proID;				// 상품 고유 번호
+	private String storeID;			// 사업자번호
+	private String proName;			// 상품이름
+	private String proCategory;		// 상품 품목
+	private int proPrice;			// 상품가격
+	private int proCnt;			// 상품수량
 	
 	public productDTO() {}
 	public productDTO(int proID, String storeID, String proName, String proCategory, int proPrice, int proCnt) {
@@ -56,7 +56,7 @@ public class productDTO {
 	}
 	@Override
 	public String toString() {
-		return "productDTO [proID=" + proID + ", storeID=" + storeID + ", proName=" + proName + ", proCategory="
-				+ proCategory + ", proPrice=" + proPrice + ", proCnt=" + proCnt + "]";
+		return "productDTO [상품번호=" + proID + ", 사업자번호=" + storeID + ", 상품명=" + proName + ", 품목="
+				+ proCategory + ", 가격=" + proPrice + ", 수량=" + proCnt + "]";
 	}
 }
