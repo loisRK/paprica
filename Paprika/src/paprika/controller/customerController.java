@@ -40,11 +40,11 @@ public class customerController {
 	}
 	
 	// 제품 구매
-//	public void newPurchase() {
+	public void newPurchase() {
 //		try {
 //			customerEndview.purchaseCheck(purService.);
 //		}
-//	}
+	}
 	
 	// 구매 내역 변경하기(취소 후 재구매)
 	
