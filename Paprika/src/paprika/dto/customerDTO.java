@@ -1,13 +1,13 @@
 package paprika.dto;
 
 public class customerDTO {
-	private String cusID; 	// ê³ ê° ID
-	private String cusPW; 	// ê³ ê° Password
-	private String cusName;	// ê³ ê° ì´ë¦„
-	private String cusAdd; 	// ê³ ê° ì£¼ì†Œ
-	private int cusRank; 		// ê³ ê° ë“±ê¸‰
-	private String cusPhone;	// ê³ ê° ì „í™”ë²ˆí˜¸
-	private String cusEmail;	// ê³ ê° ì´ë©”ì¼
+	private String cusID; 	// °í°´ ID
+	private String cusPW; 	// °í°´ Password
+	private String cusName;	// °í°´ ÀÌ¸§
+	private String cusAdd; 	// °í°´ ÁÖ¼Ò
+	private int cusRank; 		// °í°´ µî±Ş
+	private String cusPhone;	// °í°´ ÀüÈ­¹øÈ£
+	private String cusEmail;	// °í°´ ÀÌ¸ŞÀÏ
 	
 	public customerDTO() {}
 	public customerDTO(String cusID, String cusPW, String cusName, String cusAdd, int cusRank, String cusPhone,

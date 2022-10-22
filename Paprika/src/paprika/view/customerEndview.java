@@ -1,31 +1,34 @@
 package paprika.view;
 
 import java.util.ArrayList;
+
+import paprika.dto.customerDTO;
 import paprika.dto.purchaseDTO;
 
 public class customerEndview {
 
-	//ëª¨ë“  í”„ë¡œì íŠ¸ ì¶œë ¥
-	public static void allPurshase(ArrayList allOrder){
+	//¸ğµç ÇÁ·ÎÁ§Æ® Ãâ·Â
+	public static void customerListView(ArrayList allOrder){
 		int length = allOrder.size();
 		if( length != 0 ){
 			for(int index = 0; index < length; index++){			
-				System.out.println("ê²€ìƒ‰ì •ë³´ " + (index+1) + " - " + allOrder.get(index));
+				System.out.println("°Ë»öÁ¤º¸ " + (index+1) + " - " + allOrder.get(index));
 			}
 		}
 	}
 		
-	//íŠ¹ì • í”„ë¡œì íŠ¸ ì¶œë ¥ 
-	public static void purchaseCheck(purchaseDTO oneOrder){
+	//Æ¯Á¤ ÇÁ·ÎÁ§Æ® Ãâ·Â 
+	public static void customerList(customerDTO oneOrder){
 		System.out.println(oneOrder);		
 	}
 	
-	// ëª¨ë“  DTO ì •ë³´ ì¶œë ¥í•˜ëŠ” ë©”ì†Œë“œ
+	// ¸ğµç DTO Á¤º¸ Ãâ·ÂÇÏ´Â ¸Ş¼Òµå
 	public static void allView(Object object){
 		System.out.println(object);
 	}
 	
-	//ì˜ˆì™¸ ìƒí™© ì¶œë ¥
+	
+	//¿¹¿Ü »óÈ² Ãâ·Â
 	public static void showError(String message){
 		System.out.println(message);		
 	}

@@ -1,5 +1,10 @@
 package paprika.service;
 
+import java.sql.SQLException;
+import paprika.dto.storeDTO;
+import paprika.exception.NotExistException;
+import paprika.model.storeDAO;
+
 public class storeService {
 	
 	private static storeService instance = new storeService();
@@ -10,15 +15,30 @@ public class storeService {
 		return instance;
 	}
 	
-	// store - CRUD
-	// ê°€ê²Œ ì •ë³´ ë“±ë¡
+	// customer - CRUD
+	// »ç¾÷ÀÚ µî·Ï
+	public boolean addStore(storeDTO store) throws SQLException{
+		storeDAO.addStore(store);
+		return true;
+	}
+	// »ç¾÷ÀÚ ¹øÈ£·Î »ç¾÷ÀÚ Á¶È¸ Á¶È¸
+	public storeDTO getStore(String storeName) throws SQLException, NotExistException{
+		return storeDAO.getStore(storeName);
+	}
+	// id¸¦ ÅëÇÑ »ç¾÷Àå ÁÖ¼Ò Á¤º¸ º¯°æÇÏ±â
+	public boolean updateStoreAddress(String storeName,String storeAddress) throws SQLException, NotExistException{
+	return storeDAO.updateAddress(storeName,storeAddress);
+	}
+
 	
-	// ê°€ê²Œ ì •ë³´ ì¡°íšŒ
-	
-	// ê°€ê²Œ ì •ë³´ ìˆ˜ì •
-	
-	// ê°€ê²Œ ì •ë³´ ì‚­ì œ
-	
+	// id¸¦ ÅëÇÑ »ç¾÷Àå ÀüÈ­¹øÈ£ º¯°æÇÏ±â
+	public boolean updatephoneNumber(String storeName,String storenumber) throws SQLException, NotExistException{
+	return storeDAO.updateAddress(storeName,storenumber);
+	}	
+	// °³ÀÎÁ¤º¸ »èÁ¦
+	public boolean deleteStore(String storeName) throws SQLException, NotExistException{
+		return storeDAO.deleteStore(storeName);
+	}	
 	
 	
 
