@@ -70,10 +70,12 @@ public class customerController {
 	}
 	
 	// 제품 구매
-	public void newPurchase() {
-//		try {
-//			customerEndview.purchaseCheck(purService.);
-//		}
+	public void newPurchase(String productID, String customerID) {
+		try {
+			customerEndview.purchaseCheck(purService.purchaseHistory(productID, customerID));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 구매 내역 변경하기(취소 후 재구매)

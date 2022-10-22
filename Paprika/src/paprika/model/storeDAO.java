@@ -5,17 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import paprika.dto.storeDTO;
 import paprika.util.DBUtil;
 
 public class storeDAO {
-	// ëª¨ë“  ê°€ê²Œë“¤ì˜ ì •ë³´ë“¤ì„ ë°˜í™˜
+	// ¸ğµç °¡°ÔµéÀÇ Á¤º¸µéÀ» ¹İÈ¯
 	public static ArrayList<storeDTO> getAllStores() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<storeDTO> AllStore = null;
+		
 		
 		try {
 			con = DBUtil.getConnection();
@@ -31,7 +31,7 @@ public class storeDAO {
 		return AllStore;
 	}
 	
-	// idë¥¼ í†µí•œ ì‚¬ì—…ì¥ ì •ë³´ ë°˜í™˜í•˜ê¸°
+	// id¸¦ ÅëÇÑ »ç¾÷Àå Á¤º¸ ¹İÈ¯ÇÏ±â
 	public static storeDTO getStore (String customerId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -50,7 +50,7 @@ public class storeDAO {
 		}return store;
 	}
 	
-	// idë¥¼ í†µí•œ ì‚¬ì—…ì¥ ì£¼ì†Œ ì •ë³´ ë³€ê²½í•˜ê¸°
+	// id¸¦ ÅëÇÑ »ç¾÷Àå ÁÖ¼Ò Á¤º¸ º¯°æÇÏ±â
 	public static boolean updateAddress(String storeID, String address) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class storeDAO {
 		}return false;
 	}
 	
-	// idë¥¼ í†µí•œ ì‚¬ì—…ì¥ ëª… ë³€ê²½í•˜ê¸°
+	// id¸¦ ÅëÇÑ »ç¾÷Àå ¸í º¯°æÇÏ±â
 	public static boolean updateStoreName (String storeID, String storeName) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -88,7 +88,7 @@ public class storeDAO {
 		}return false;
 	}
 		
-	// idë¥¼ í†µí•œ ì‚¬ì—…ì¥ ì „í™”ë²ˆí˜¸ ë³€ê²½í•˜ê¸°
+	// id¸¦ ÅëÇÑ »ç¾÷Àå ÀüÈ­¹øÈ£ º¯°æÇÏ±â
 	public static boolean updateStorePhone (String storeID, String phoneNumber) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -107,7 +107,7 @@ public class storeDAO {
 		}return false;
 	}
 	
-	// ê°€ê²Œ ì •ë³´ ì¶”ê°€í•˜ê¸°
+	// °¡°Ô Á¤º¸ Ãß°¡ÇÏ±â
 	public static boolean addStore(storeDTO store) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +134,7 @@ public class storeDAO {
 
 	}
 	
-	// ê°€ê²Œ ì •ë³´ ì‚­ì œí•˜ê¸°
+	// °¡°Ô Á¤º¸ »èÁ¦ÇÏ±â
 	public static boolean deleteStore(String storeID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;

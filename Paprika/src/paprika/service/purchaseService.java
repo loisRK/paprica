@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import paprika.dto.purchaseDTO;
 import paprika.exception.NotExistException;
+import paprika.model.productDAO;
 import paprika.model.purchaseDAO;
 
 public class purchaseService {
@@ -18,8 +19,8 @@ public class purchaseService {
 	
 	// purchase - CRUD
 	// notExistProduct
-	public void notExistPurchase(String columnName) throws NotExistException, SQLException {
-		purchaseDTO purchase = purchaseDAO.getOnePurchase(columnName);
+	public void notExistPurchase(int orderID) throws NotExistException, SQLException {
+		purchaseDTO purchase = purchaseDAO.getOnePurchase(orderID);
 		if(purchase == null) {
 			throw new NotExistException("해당 구매이력이 없습니다.");
 		}
@@ -36,6 +37,15 @@ public class purchaseService {
 	}
 	
 	// 새로운 구매 이력 저장
+	public purchaseDTO purchaseHistory(String productID, String customerID) throws SQLException{
+		
+		// 입력받은 productID와 customerID를 이용하여 새로운 purchaseDTO 객체 생성 후 insert 쿼리에 넣어 준다.
+		purchaseDTO newOrder = new purchaseDTO();
+		
+		purchaseDAO.addPurchase(newOrder);
+//		int orderID = purchaseDAO.getOrderID();
+		return purchaseDAO.getOnePurchase(2);
+	}
 	
 	// 특정 품목 삭제
 
