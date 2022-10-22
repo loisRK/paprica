@@ -1,12 +1,25 @@
 package paprika.view;
 
 import java.util.ArrayList;
+import paprika.dto.productDTO;
+import paprika.dto.customerDTO;
 import paprika.dto.purchaseDTO;
 
 public class customerEndview {
+	
+	//  異�
+		public static void productListView(ArrayList<productDTO> allProduct) {
+			int length = allProduct.size();
+			System.out.println("[寃 寃곌낵] 珥 " + length + "媛  寃듬.");
+			if (length != 0) {
+				for(int i = 0; i<length; i++) {
+					System.out.println(i +  ". " + allProduct.get(i));
+				}
+			}
+		}
 
 	//모든 프로젝트 출력
-	public static void allPurshase(ArrayList allOrder){
+	public static void customerListView(ArrayList allOrder){
 		int length = allOrder.size();
 		if( length != 0 ){
 			for(int index = 0; index < length; index++){			
@@ -16,7 +29,7 @@ public class customerEndview {
 	}
 		
 	//특정 프로젝트 출력 
-	public static void purchaseCheck(purchaseDTO oneOrder){
+	public static void customerList(customerDTO oneOrder){
 		System.out.println(oneOrder);		
 	}
 	
@@ -24,6 +37,7 @@ public class customerEndview {
 	public static void allView(Object object){
 		System.out.println(object);
 	}
+	
 	
 	//예외 상황 출력
 	public static void showError(String message){

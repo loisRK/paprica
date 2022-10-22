@@ -1,24 +1,74 @@
 package paprika.service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import paprika.dto.customerDTO;
+import paprika.dto.storeDTO;
+import paprika.exception.NotExistException;
+import paprika.model.customerDAO;
+import paprika.model.storeDAO;
+
 public class customerService {
+	private static customerService instance = new customerService();
+	
+	private customerService() {}
+	
+	public static customerService getInstance() {
+		return instance;
+	}
+	
+	public void NotExistException(String customerID) throws NotExistException, SQLException{
+		customerDTO customer = customerDAO.getCustomer(customerID);
+		if(customer == null){
+			throw new NotExistException("¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+		}
+	}
 	
 	// customer - CRUD
-	// ê°œì¸ì •ë³´ ë“±ë¡
+	// ¸ğµç °í°´ Á¤º¸ ¹İÈ¯
+	public ArrayList<customerDTO> getAllCustomers() throws SQLException{
+		return customerDAO.getAllCustomers();
+	}
 	
-	// ê°œì¸ì •ë³´ ì¡°íšŒ
+	// °³ÀÎÁ¤º¸ µî·Ï
+	public boolean addCustomer(customerDTO customer) throws SQLException{
+		customerDAO.addCustomer(customer);
+		return true;
+	}
+	// °³ÀÎÁ¤º¸ Á¶È¸
+	public customerDTO getCustomer(String customerId) throws SQLException, NotExistException{
+		NotExistException(customerId);
+		return customerDAO.getCustomer(customerId);
+	}
+	// °³ÀÎÁ¤º¸ ¼öÁ¤
+	public boolean updateAddress(String customerId,String address) throws SQLException, NotExistException{
+		NotExistException(customerId);
+	return customerDAO.updateAddress(customerId, address);
+	}
 	
-	// ê°œì¸ì •ë³´ ìˆ˜ì •
+	public boolean updatePassword(String customerId,String customerPassword) throws SQLException, NotExistException{
+		NotExistException(customerId);
+	return customerDAO.updatePassword(customerId, customerPassword);
+	}
 	
-	// ê°œì¸ì •ë³´ ì‚­ì œ
+	public boolean updatePhonenumber(String customerId, String phoneNumber) throws SQLException, NotExistException{
+		NotExistException(customerId);
+		return customerDAO.updatephoneNumber(customerId, phoneNumber);
+	}
+	
+	// °³ÀÎÁ¤º¸ »èÁ¦
+	public boolean deleteCustomer(String customerId) throws SQLException, NotExistException{
+		NotExistException(customerId);
+	return customerDAO.deleteCustomer(customerId);
+	}
 	
 	
+	// Buying - Á¦Ç° ±¸¸Å ¹× Á¤º¸ È®ÀÎ ±¸¸Å ³»¿ª È®ÀÎ ¹× ÁÖ¹® Á¤º¸ ¼öÁ¤
+	// ±¸¸ÅÇÏ±â
 	
-	// Buying - ì œí’ˆ êµ¬ë§¤ ë° ì •ë³´ í™•ì¸ êµ¬ë§¤ ë‚´ì—­ í™•ì¸ ë° ì£¼ë¬¸ ì •ë³´ ìˆ˜ì •
-	// êµ¬ë§¤í•˜ê¸°
+	// ±¸¸Å³»¿ª È®ÀÎÇÏ±â
 	
-	// êµ¬ë§¤ë‚´ì—­ í™•ì¸í•˜ê¸°
-	
-	// êµ¬ë§¤ ì·¨ì†Œí•˜ê¸°
+	// ±¸¸Å Ãë¼ÒÇÏ±â
 
 	
 }

@@ -1,11 +1,11 @@
 package paprika.dto;
 
 public class storeDTO {
-	private String storeID;	//ê±°ë˜ì²˜ ì•„ì´ë””
-	private String storeName;	// ê±°ë˜ì²˜ ëª…
-	private String ownerName;	// ê±°ë˜ì²˜ ì‚¬ì¥ë‹˜ ì´ë¦„
-	private String storeAdd;	// ê±°ë˜ì²˜ ì£¼ì†Œ
-	private String storeNumber;	// ê±°ë˜ì²˜ ì „í™”ë²ˆí˜¸
+	private String storeID;	//°Å·¡Ã³ ¾ÆÀÌµğ
+	private String storeName;	// °Å·¡Ã³ ¸í
+	private String ownerName;	// °Å·¡Ã³ »çÀå´Ô ÀÌ¸§
+	private String storeAdd;	// °Å·¡Ã³ ÁÖ¼Ò
+	private String storeNumber;	// °Å·¡Ã³ ÀüÈ­¹øÈ£
 	
 	storeDTO(){}
 
