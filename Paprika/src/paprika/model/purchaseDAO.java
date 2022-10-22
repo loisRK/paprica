@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import paprika.dto.purchaseDTO;
@@ -96,6 +97,36 @@ public class purchaseDAO {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return purchaseOne;
+	}
+	
+	public static ArrayList<purchaseDTO> getSomePurchase(String colName, String colValue) throws SQLException {
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<purchaseDTO> list = null;
+		try {
+			con = DBUtil.getConnection();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery("select * from purchase where "
+										+ colName + " = '" + colValue + "'");
+
+			list = new ArrayList<purchaseDTO>();
+			while (rset.next()) {
+				list.add(new purchaseDTO(rset.getInt(1),
+										  rset.getInt(2), 
+										  rset.getString(3),
+										  rset.getInt(4),
+										  rset.getString(5),
+										  rset.getString(6),
+										  rset.getString(7),
+										  rset.getString(8),
+										  rset.getString(9),
+										  rset.getString(10)));
+			}
+		} finally {
+			DBUtil.close(con, stmt, rset);
+		}
+		return list;
 	}
 	
 	// 주문상태 변경(update)

@@ -1,5 +1,7 @@
 package paprika.controller;
 
+import java.sql.SQLException;
+
 import paprika.service.customerService;
 import paprika.service.purchaseService;
 import paprika.service.storeService;
@@ -35,8 +37,12 @@ public class customerController {
 	}
 	
 	// 특정 구매 내역 정보 확인 (상태, 배송일, )
-	public void getPurchaseInfo() {
-		
+	public void getPurchaseInfo(String colName, String colValue) {
+		try {
+			customerEndview.allPurshase(purService.getPurchaseHistory(colName, colValue));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 제품 구매

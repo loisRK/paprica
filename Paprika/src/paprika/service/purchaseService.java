@@ -18,6 +18,12 @@ public class purchaseService {
 	
 	// purchase - CRUD
 	// notExistProduct
+	public void notExistPurchase(String columnName) throws NotExistException, SQLException {
+		purchaseDTO purchase = purchaseDAO.getOnePurchase(columnName);
+		if(purchase == null) {
+			throw new NotExistException("해당 구매이력이 없습니다.");
+		}
+	}
 	
 	// 모든 구매 정보 반환
 	public ArrayList<purchaseDTO> getAllPurchase(String cusID) throws SQLException {
@@ -25,6 +31,9 @@ public class purchaseService {
 	}
 	
 	// 특정 구매 정보 반환
+	public ArrayList<purchaseDTO> getPurchaseHistory(String colName, String colValue) throws SQLException {
+		return purchaseDAO.getSomePurchase(colName, colValue);
+	}
 	
 	// 새로운 구매 이력 저장
 	
