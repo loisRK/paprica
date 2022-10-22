@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import paprika.exception.NotExistException;
 import paprika.service.customerService;
+import paprika.service.productService;
 import paprika.service.purchaseService;
 import paprika.service.storeService;
 import paprika.view.customerEndview;
@@ -13,6 +14,7 @@ public class customerController {
 //	private customerService cService = customerService.getInstance();
 	private purchaseService purService = purchaseService.getInstance();
 	private storeService sService = storeService.getInstance();
+	private productService proservice = productService.getInstance();
 	
 	private customerController() {}
 	public static customerController getInstance() {

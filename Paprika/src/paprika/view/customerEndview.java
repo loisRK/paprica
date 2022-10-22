@@ -1,34 +1,45 @@
 package paprika.view;
 
 import java.util.ArrayList;
-
+import paprika.dto.productDTO;
 import paprika.dto.customerDTO;
 import paprika.dto.purchaseDTO;
 
 public class customerEndview {
+	
+	// ÂƒÂÂ’Âˆ ç•°Âœï¿½
+		public static void productListView(ArrayList<productDTO> allProduct) {
+			int length = allProduct.size();
+			System.out.println("[å¯ƒÂ€ÂƒÂ‰ å¯ƒê³Œë‚µ] ç¥Â " + length + "åª›ÂœÂÂ˜ ÂƒÂÂ’ÂˆÂ å¯ƒÂ€ÂƒÂ‰ÂÂ˜Â—ÂˆÂŠë“¬Â‹ÂˆÂ‹.");
+			if (length != 0) {
+				for(int i = 0; i<length; i++) {
+					System.out.println(i +  ". " + allProduct.get(i));
+				}
+			}
+		}
 
-	//¸ğµç ÇÁ·ÎÁ§Æ® Ãâ·Â
+	//ëª¨ë“  í”„ë¡œì íŠ¸ ì¶œë ¥
 	public static void customerListView(ArrayList allOrder){
 		int length = allOrder.size();
 		if( length != 0 ){
 			for(int index = 0; index < length; index++){			
-				System.out.println("°Ë»öÁ¤º¸ " + (index+1) + " - " + allOrder.get(index));
+				System.out.println("ê²€ìƒ‰ì •ë³´ " + (index+1) + " - " + allOrder.get(index));
 			}
 		}
 	}
 		
-	//Æ¯Á¤ ÇÁ·ÎÁ§Æ® Ãâ·Â 
+	//íŠ¹ì • í”„ë¡œì íŠ¸ ì¶œë ¥ 
 	public static void customerList(customerDTO oneOrder){
 		System.out.println(oneOrder);		
 	}
 	
-	// ¸ğµç DTO Á¤º¸ Ãâ·ÂÇÏ´Â ¸Ş¼Òµå
+	// ëª¨ë“  DTO ì •ë³´ ì¶œë ¥í•˜ëŠ” ë©”ì†Œë“œ
 	public static void allView(Object object){
 		System.out.println(object);
 	}
 	
 	
-	//¿¹¿Ü »óÈ² Ãâ·Â
+	//ì˜ˆì™¸ ìƒí™© ì¶œë ¥
 	public static void showError(String message){
 		System.out.println(message);		
 	}
