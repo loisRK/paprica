@@ -98,15 +98,17 @@ public class customerController {
 	
 	}
 	
-	// 제품 구매
+	// 제품 구입
 
+	  
 	
+	// insert
 	// 회원 탈퇴
 	public void deleteCustomer(String customerId) throws NotExistException {
-		try {
-			service.deleteCustomer(customerId);
-		}catch(SQLException e) {
-		}
+//		try {
+//			service.deleteCustomer(customerId);
+//		}catch(SQLException e) {
+//		}
 		
 	}
 
