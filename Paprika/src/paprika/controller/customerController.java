@@ -53,6 +53,9 @@ public class customerController {
 	}
 	
 	// 구매 내역 변경하기(취소 후 재구매)
+	public void editPurchase() {
+		
+	}
 	
 	
 	// 개인정보 변경
