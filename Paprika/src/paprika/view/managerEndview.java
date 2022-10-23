@@ -1,7 +1,6 @@
 package paprika.view;
 
 import java.util.ArrayList;
-
 import paprika.dto.productDTO;
 
 public class managerEndview {
