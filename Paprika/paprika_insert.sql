@@ -49,6 +49,20 @@ SELECT * FROM customer;
 
 -- purchase insert
 DESC purchase;
-INSERT INTO purchase VALUES(1, 1001,  "a123", 5, "이현지", "전라도는 너무 멀어", "010-3437-5734", "배송중", '2022-10-21',  "무료배송");
+INSERT INTO purchase VALUES(1, 1001, "a123", 5, "이현지", "전라도는 너무 멀어", "010-3437-5734", "배송중", '2022-10-21',  "무료배송");
+INSERT INTO purchase VALUES(2, 1001, "lois", 3, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "배송중", '2022-10-22',  "무료배송");
+INSERT INTO purchase VALUES(3, 1001, "lois", 2, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "주문 접수", '2022-10-23',  "무료배송");
+INSERT INTO purchase VALUES( 1001, "lois", 2, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "주문 접수", '2022-10-23',  "무료배송");
+
+update purchase set order_status="배송완료" where order_id = 1;
 
 SELECT * FROM purchase;
+
+-- order_date 컬럼 타입 변경
+ALTER TABLE purchase MODIFY order_date VARCHAR(50);
+
+-- 마지막 행 읽어오기
+ SELECT * FROM purchase ORDER BY order_ID DESC LIMIT 1;
+ SELECT order_id FROM purchase ORDER BY order_ID DESC LIMIT 1;
+
+select * from customer where cus_id = "lois";

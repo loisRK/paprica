@@ -10,7 +10,7 @@ import paprika.dto.customerDTO;
 import paprika.util.DBUtil;
 
 public class customerDAO {
-	// ∞Ì∞¥ √ﬂ∞°«œ±‚
+	// Í≥†Í∞ù Ï†ïÎ≥¥ Ï∂îÍ∞Ä
 	public static boolean addCustomer(customerDTO customer) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -38,7 +38,7 @@ public class customerDAO {
 
 	}
 
-	// ∞Ì∞¥ ¡§∫∏∏¶ ªË¡¶«œ±‚
+	// Í≥†Í∞ù Ï†ïÎ≥¥ ÏÇ≠Ï†ú
 	public static boolean deleteCustomer(String customerid) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -58,7 +58,7 @@ public class customerDAO {
 		return false;
 	}
 	
-	// id∏¶ ≈Î«— ∞Ì∞¥¡§∫∏∏¶ π›»Ø
+	// ÏïÑÏù¥ÎîîÎ°ú Í≥†Í∞ù Ï†ïÎ≥¥ Ï°∞Ìöå
 	public static customerDTO getCustomer (String customerId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -77,7 +77,7 @@ public class customerDAO {
 		}return customer;
 	}
 	
-	// ∏µÁ ∞Ì∞¥µÈ ∏ÆΩ∫∆Æ∏¶ π›»Ø
+	// Î™®Îì† Í≥†Í∞ù Ï†ïÎ≥¥ Î≥¥Í∏∞
 	public static ArrayList<customerDTO> getAllCustomers() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -99,7 +99,7 @@ public class customerDAO {
 		return list;
 	}
 	
-	// ∞Ì∞¥ æ∆¿Ãµ∏¶ ≈Î«— ∫Òπ–π¯»£ ∫Ø∞Ê
+	// Í≥†Í∞ù ÎπÑÎ∞ÄÎ≤àÌò∏ Î≥ÄÍ≤Ω
 	public static boolean updatePassword (String customerId, String customerPassword) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -117,7 +117,8 @@ public class customerDAO {
 			DBUtil.close(con, pstmt);
 		}return false;
 	}
-	// ∞Ì∞¥ æ∆¿Ãµ∏¶ ¡÷º“ ∫Ø∞Ê
+	
+	// Í≥†Í∞ù Ï£ºÏÜå Î≥ÄÍ≤Ω
 	public static boolean updateAddress (String customerId, String address) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +135,8 @@ public class customerDAO {
 			DBUtil.close(con, pstmt);
 		}return false;
 	}
-	// ∞Ì∞¥ æ∆¿Ãµ∏¶ ≈Î«— ¿¸»≠π¯»£ ∫Ø∞Ê
+	
+	// Í≥†Í∞ù Ï†ÑÌôîÎ≤àÌò∏ Î≥ÄÍ≤Ω
 	public static boolean updatephoneNumber (String customerId, String phoneNumber) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -153,6 +155,38 @@ public class customerDAO {
 		}return false;
 	}
 	
+   // Í≥†Í∞ù Îì±Í∏âÎ≥ÄÍ≤Ω 
+   public static boolean updatecustomerGrade () throws SQLException{
+      Connection con = null;
+      PreparedStatement pstmt = null;
+      try {
+         con = DBUtil.getConnection();
+         pstmt = con.prepareStatement("UPDATE customer c inner join (select s.cus_id,order_name,sum(pro_price*order_cnt) as z\r\n" + 
+               "                        from purchase s,product p\r\n" + 
+               "                        where s.pro_id = p.pro_id\r\n" + 
+               "                                GROUP BY s.cus_id) as b\r\n" + 
+               "on c.cus_id = b.cus_id\r\n" + 
+               "set cus_rank = (\r\n" + 
+               "case\r\n" + 
+               "WHEN c.cus_id = 'admin' then 0 \r\n" +
+               "WHEN z>=0 and z < 10000 then 1 \r\n" + 
+               "WHEN z >= 10000 and z <20000 then 2\r\n" + 
+               "WHEN z >= 20000 and z <30000 THEN 3\r\n" + 
+               "WHEN z >= 30000 and z <40000 THEN 4\r\n" + 
+               "WHEN z >= 40000 and z <1000000000 THEN 5\r\n" + 
+               "else 1 \r\n" + 
+               "end);\r\n" + 
+               "select * from customer;");
+
+            
+         int result = pstmt.executeUpdate();
+            if(result == 1) {
+               return true;
+            }
+      }finally {
+         DBUtil.close(con, pstmt);
+      }return false;
+   }
 	
 		
 }

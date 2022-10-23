@@ -9,7 +9,7 @@ import paprika.dto.storeDTO;
 import paprika.util.DBUtil;
 
 public class storeDAO {
-	// ¸ğµç °¡°ÔµéÀÇ Á¤º¸µéÀ» ¹İÈ¯
+	// ëª¨ë“  ê°€ê²Œ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 	public static ArrayList<storeDTO> getAllStores() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -31,8 +31,8 @@ public class storeDAO {
 		return AllStore;
 	}
 	
-	// id¸¦ ÅëÇÑ »ç¾÷Àå Á¤º¸ ¹İÈ¯ÇÏ±â
-	public static storeDTO getStore (String customerId) throws SQLException{
+	// ì‚¬ì—…ì ë²ˆí˜¸ë¡œ ê°€ê²Œ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
+	public static storeDTO getStore (String storeID) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -40,7 +40,7 @@ public class storeDAO {
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM store WHERE store_id =?");
-				pstmt.setString(1, customerId);
+				pstmt.setString(1, storeID);
 				rset = pstmt.executeQuery();
 				if(rset.next()) {
 					store = new storeDTO(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getString(5));
@@ -50,7 +50,7 @@ public class storeDAO {
 		}return store;
 	}
 	
-	// id¸¦ ÅëÇÑ »ç¾÷Àå ÁÖ¼Ò Á¤º¸ º¯°æÇÏ±â
+	// ê°€ê²Œ ì£¼ì†Œ ë³€ê²½í•˜ê¸°
 	public static boolean updateAddress(String storeID, String address) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class storeDAO {
 		}return false;
 	}
 	
-	// id¸¦ ÅëÇÑ »ç¾÷Àå ¸í º¯°æÇÏ±â
+	// ê°€ê²Œëª… ë³€ê²½í•˜ê¸°
 	public static boolean updateStoreName (String storeID, String storeName) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -88,7 +88,7 @@ public class storeDAO {
 		}return false;
 	}
 		
-	// id¸¦ ÅëÇÑ »ç¾÷Àå ÀüÈ­¹øÈ£ º¯°æÇÏ±â
+	// ê°€ê²Œ ë²ˆí˜¸ ë³€ê²½í•˜ê¸°
 	public static boolean updateStorePhone (String storeID, String phoneNumber) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -107,7 +107,7 @@ public class storeDAO {
 		}return false;
 	}
 	
-	// °¡°Ô Á¤º¸ Ãß°¡ÇÏ±â
+	// ìƒˆë¡œìš´ ê°€ê²Œ ì¶”ê°€í•˜ê¸°
 	public static boolean addStore(storeDTO store) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +134,7 @@ public class storeDAO {
 
 	}
 	
-	// °¡°Ô Á¤º¸ »èÁ¦ÇÏ±â
+	// ê°€ê²Œ ì •ë³´ ì‚­ì œí•˜ê¸°
 	public static boolean deleteStore(String storeID) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -9,66 +9,66 @@ import paprika.model.customerDAO;
 import paprika.model.storeDAO;
 
 public class customerService {
-	private static customerService instance = new customerService();
-	
-	private customerService() {}
-	
-	public static customerService getInstance() {
-		return instance;
-	}
-	
-	public void NotExistException(String customerID) throws NotExistException, SQLException{
-		customerDTO customer = customerDAO.getCustomer(customerID);
-		if(customer == null){
-			throw new NotExistException("¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-		}
-	}
-	
-	// customer - CRUD
-	// ¸ğµç °í°´ Á¤º¸ ¹İÈ¯
-	public ArrayList<customerDTO> getAllCustomers() throws SQLException{
-		return customerDAO.getAllCustomers();
-	}
-	
-	// °³ÀÎÁ¤º¸ µî·Ï
-	public boolean addCustomer(customerDTO customer) throws SQLException{
-		customerDAO.addCustomer(customer);
-		return true;
-	}
-	// °³ÀÎÁ¤º¸ Á¶È¸
-	public customerDTO getCustomer(String customerId) throws SQLException, NotExistException{
-		NotExistException(customerId);
-		return customerDAO.getCustomer(customerId);
-	}
-	// °³ÀÎÁ¤º¸ ¼öÁ¤
-	public boolean updateAddress(String customerId,String address) throws SQLException, NotExistException{
-		NotExistException(customerId);
-	return customerDAO.updateAddress(customerId, address);
-	}
-	
-	public boolean updatePassword(String customerId,String customerPassword) throws SQLException, NotExistException{
-		NotExistException(customerId);
-	return customerDAO.updatePassword(customerId, customerPassword);
-	}
-	
-	public boolean updatePhonenumber(String customerId, String phoneNumber) throws SQLException, NotExistException{
-		NotExistException(customerId);
-		return customerDAO.updatephoneNumber(customerId, phoneNumber);
-	}
-	
-	// °³ÀÎÁ¤º¸ »èÁ¦
-	public boolean deleteCustomer(String customerId) throws SQLException, NotExistException{
-		NotExistException(customerId);
-	return customerDAO.deleteCustomer(customerId);
-	}
-	
-	
-	// Buying - Á¦Ç° ±¸¸Å ¹× Á¤º¸ È®ÀÎ ±¸¸Å ³»¿ª È®ÀÎ ¹× ÁÖ¹® Á¤º¸ ¼öÁ¤
-	// ±¸¸ÅÇÏ±â
-	
-	// ±¸¸Å³»¿ª È®ÀÎÇÏ±â
-	
-	// ±¸¸Å Ãë¼ÒÇÏ±â
-
-	
+   private static customerService instance = new customerService();
+   
+   private customerService() {}
+   
+   public static customerService getInstance() {
+      return instance;
+   }
+   
+   public void NotExistException(String customerID) throws NotExistException, SQLException{
+      customerDTO customer = customerDAO.getCustomer(customerID);
+      if(customer == null){
+         throw new NotExistException("ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+      }
+   }
+   
+   // customer - CRUD
+   // ëª¨ë“  ê³ ê° ì •ë³´ ë°˜í™˜
+   public ArrayList<customerDTO> getAllCustomers() throws SQLException{
+      return customerDAO.getAllCustomers();
+   }
+   
+   // ê°œì¸ì •ë³´ ë“±ë¡
+   public boolean addCustomer(customerDTO customer) throws SQLException{
+      customerDAO.addCustomer(customer);
+      return true;
+   }
+   
+   // ê°œì¸ì •ë³´ ì¡°íšŒ
+   public customerDTO getCustomer(String customerId) throws SQLException, NotExistException{
+      NotExistException(customerId);
+      return customerDAO.getCustomer(customerId);
+   }
+   
+   // ê°œì¸ì •ë³´ ìˆ˜ì •
+   public boolean updateAddress(String customerId,String address) throws SQLException, NotExistException{
+      NotExistException(customerId);
+   return customerDAO.updateAddress(customerId, address);
+   }
+   
+   public boolean updatePassword(String customerId,String customerPassword) throws SQLException, NotExistException{
+      NotExistException(customerId);
+   return customerDAO.updatePassword(customerId, customerPassword);
+   }
+   
+   public boolean updatePhonenumber(String customerId, String phoneNumber) throws SQLException, NotExistException{
+      NotExistException(customerId);
+      return customerDAO.updatephoneNumber(customerId, phoneNumber);
+   }
+   
+   // ê³ ê° ë“±ê¸‰ë³€ê²½ (ê³„ì§„)
+   public boolean updatecustomerGrade() throws SQLException, NotExistException{
+	   return customerDAO.updatecustomerGrade();
+   }
+   
+   // ê°œì¸ì •ë³´ ì‚­ì œ
+   public boolean deleteCustomer(String customerId) throws SQLException, NotExistException{
+      customerDTO customerCheck = customerDAO.getCustomer(customerId);
+      if(customerCheck == null) {
+    	  throw new NotExistException("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì…ë‹ˆë‹¤.");
+      }
+      return customerDAO.deleteCustomer(customerId);
+   }
 }
