@@ -126,7 +126,7 @@ public class customerController {
 	// 제품 구매
 	public void newPurchase(int productID, String customerID, int count) {
 		try {
-			customerEndview.purchaseCheck(purService.purchaseHistory(productID, customerID, count));
+			customerEndview.purchaseCheck(purService.purchaseProduct(productID, customerID, count));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

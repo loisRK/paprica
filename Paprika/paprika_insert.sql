@@ -38,25 +38,28 @@ SELECT * FROM product;
 DESC customer;
 
 INSERT INTO customer VALUES("lois", "LLLL",  "김륜경", "서울시 샌프란시스코 북한산 입구", 0, "010-1111-2222", "lois@daum.com");
-INSERT INTO customer VALUES("riccess", "RRRR",  "장우성", "인천광역시 남동구 간석동", 0, "010-6800-5221", "riccess@naver.net");
-
-INSERT INTO customer VALUES("a123", "A123",  "이현지", "수원시 팔달구 고등동", 2, "010-2352-2222", "a123@daum.com");
+INSERT INTO customer VALUES("admin", "RRRR",  "장우성", "인천광역시 남동구 간석동", 0, "010-6800-5221", "riccess@naver.net");
+INSERT INTO customer VALUES("a123", "A123",  "이현지", "수원시 팔달구 고등동", 1, "010-2352-2222", "a123@daum.com");
 INSERT INTO customer VALUES("b123", "B123",  "박기나", "서울 어딘가에 삶", 3, "010-1245-1245", "b123@naver.net");
 INSERT INTO customer VALUES("c123", "C123",  "박형규", "대전은 노잼도시", 1, "010-4367-1222", "c123@daum.com");
-INSERT INTO customer VALUES("d123", "D123",  "김민수", "전라도는 너무 멀어", 1, "010-3437-5734", "d123@naver.net");
+INSERT INTO customer VALUES("d123", "D123",  "김민수", "전라도는 너무 멀어", 5, "010-3437-5734", "d123@naver.net");
 
 SELECT * FROM customer;
+delete from customer where cus_id='a123';
+update customer set cus_rank = 1 where cus_id = 'riccess';
 
 -- purchase insert
 DESC purchase;
 INSERT INTO purchase VALUES(1, 1001, "a123", 5, "이현지", "전라도는 너무 멀어", "010-3437-5734", "배송중", '2022-10-21',  "무료배송");
 INSERT INTO purchase VALUES(2, 1001, "lois", 3, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "배송중", '2022-10-22',  "무료배송");
 INSERT INTO purchase VALUES(3, 1001, "lois", 2, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "주문 접수", '2022-10-23',  "무료배송");
-INSERT INTO purchase VALUES( 1001, "lois", 2, "김륜경", "서울시 샌프란시스코 북한산 입구", "010-1111-2222", "주문 접수", '2022-10-23',  "무료배송");
 
 update purchase set order_status="배송완료" where order_id = 1;
 
 SELECT * FROM purchase;
+SELECT count(order_id) FROM purchase;
+delete from purchase where cus_id = 'riccess';
+update purchase set order_status="주문접수" where order_id=8;
 
 -- order_date 컬럼 타입 변경
 ALTER TABLE purchase MODIFY order_date VARCHAR(50);

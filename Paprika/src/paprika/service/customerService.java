@@ -45,12 +45,12 @@ public class customerService {
    // 개인정보 수정
    public boolean updateAddress(String customerId,String address) throws SQLException, NotExistException{
       NotExistException(customerId);
-   return customerDAO.updateAddress(customerId, address);
+      return customerDAO.updateAddress(customerId, address);
    }
    
    public boolean updatePassword(String customerId,String customerPassword) throws SQLException, NotExistException{
       NotExistException(customerId);
-   return customerDAO.updatePassword(customerId, customerPassword);
+      return customerDAO.updatePassword(customerId, customerPassword);
    }
    
    public boolean updatePhonenumber(String customerId, String phoneNumber) throws SQLException, NotExistException{

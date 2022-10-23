@@ -175,10 +175,7 @@ public class customerDAO {
                "WHEN z >= 30000 and z <40000 THEN 4\r\n" + 
                "WHEN z >= 40000 and z <1000000000 THEN 5\r\n" + 
                "else 1 \r\n" + 
-               "end);\r\n" + 
-               "select * from customer;");
-
-            
+               "end);\r\n");
          int result = pstmt.executeUpdate();
             if(result == 1) {
                return true;
