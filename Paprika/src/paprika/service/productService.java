@@ -47,7 +47,7 @@ public class productService {
 	
 	// 상품 조회하기-----------------------------------------------------------------------------
 	// 모든 품목 정보 반환
-	public ArrayList<productDTO> getAllBTProduct() throws SQLException{
+	public ArrayList<productDTO> getAllProduct() throws SQLException{
 		return productDAO.getAllProduct();
 	}
 	
@@ -89,7 +89,7 @@ public class productService {
 	
 	// 상품 수정 --------------------------------------------------------------------------------------------------------------------------------
 	// 이름으로 특정 품목 가격 수정
-	public boolean updatePrice(String productID, int productPrice) throws SQLException {
+	public boolean updatePrice(int productID, int productPrice) throws SQLException {
 		return productDAO.updatePrice(productID, productPrice);
 	}
 
@@ -111,4 +111,12 @@ public class productService {
 		return productDAO.deleteProduct(productName);
 	}
 	// ---------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	// 상품 아이디로 상품정보 불러오기
+	public productDTO callProduct(int productId) throws SQLException {
+		productDTO getProduct = productDAO.getProductId(productId);
+		return getProduct;
+	}
 }
