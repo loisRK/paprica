@@ -1,5 +1,7 @@
 package paprika.dto;
 
+import java.sql.Date;
+
 public class purchaseDTO {
 	private int orderID;			// 주문번호
 	private int proID;				// product 아이디
@@ -26,7 +28,8 @@ public class purchaseDTO {
 		this.orderStatus = orderStatus;
 		this.orderDate = orderDate;
 		this.deliveryType = deliveryType;
-	}
+	}	
+	
 	public int getOrderID() {
 		return orderID;
 	}
@@ -89,7 +92,7 @@ public class purchaseDTO {
 	}
 	@Override
 	public String toString() {
-		return "buyingDTO [orderID=" + orderID + ", cusID=" + cusID + ", proID=" + proID + ","
+		return "purchaseDTO [orderID=" + orderID + ", cusID=" + cusID + ", proID=" + proID
 				+ ", orderCnt=" + orderCnt + ", orderName=" + orderName + ", orderAdd=" + orderAdd + ", orderRecNumber="
 				+ orderRecNumber + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate + ", deliveryType="
 				+ deliveryType + "]";

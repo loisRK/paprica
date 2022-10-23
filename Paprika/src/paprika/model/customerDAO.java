@@ -155,6 +155,38 @@ public class customerDAO {
 		}return false;
 	}
 	
+   // 고객 등급변경 
+   public static boolean updatecustomerGrade () throws SQLException{
+      Connection con = null;
+      PreparedStatement pstmt = null;
+      try {
+         con = DBUtil.getConnection();
+         pstmt = con.prepareStatement("UPDATE customer c inner join (select s.cus_id,order_name,sum(pro_price*order_cnt) as z\r\n" + 
+               "                        from purchase s,product p\r\n" + 
+               "                        where s.pro_id = p.pro_id\r\n" + 
+               "                                GROUP BY s.cus_id) as b\r\n" + 
+               "on c.cus_id = b.cus_id\r\n" + 
+               "set cus_rank = (\r\n" + 
+               "case\r\n" + 
+               "WHEN c.cus_id = 'admin' then 0 \r\n" +
+               "WHEN z>=0 and z < 10000 then 1 \r\n" + 
+               "WHEN z >= 10000 and z <20000 then 2\r\n" + 
+               "WHEN z >= 20000 and z <30000 THEN 3\r\n" + 
+               "WHEN z >= 30000 and z <40000 THEN 4\r\n" + 
+               "WHEN z >= 40000 and z <1000000000 THEN 5\r\n" + 
+               "else 1 \r\n" + 
+               "end);\r\n" + 
+               "select * from customer;");
+
+            
+         int result = pstmt.executeUpdate();
+            if(result == 1) {
+               return true;
+            }
+      }finally {
+         DBUtil.close(con, pstmt);
+      }return false;
+   }
 	
 		
 }

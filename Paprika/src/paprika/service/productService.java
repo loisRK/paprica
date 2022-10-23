@@ -119,4 +119,9 @@ public class productService {
 		productDTO getProduct = productDAO.getProductId(productId);
 		return getProduct;
 	}
+	
+	
+	
+	// 장바구니 담기 (륜경)
+//	public void 
 }

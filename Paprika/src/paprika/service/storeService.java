@@ -16,26 +16,28 @@ public class storeService {
 	}
 	
 	// customer - CRUD
-	// ����� ���
+	// 새로운 가게 추가
 	public boolean addStore(storeDTO store) throws SQLException{
 		storeDAO.addStore(store);
 		return true;
 	}
-	// ����� ��ȣ�� ����� ��ȸ ��ȸ
+	
+	// 가게 정보 불러오기
 	public storeDTO getStore(String storeName) throws SQLException, NotExistException{
 		return storeDAO.getStore(storeName);
 	}
-	// id�� ���� ����� �ּ� ���� �����ϱ�
-	public boolean updateStoreAddress(String storeName,String storeAddress) throws SQLException, NotExistException{
+	
+	// 가게 주소 변경
+	public boolean updateStoreAddress(String storeName, String storeAddress) throws SQLException, NotExistException{
 		return storeDAO.updateAddress(storeName,storeAddress);
 	}
 
-	
-	// id�� ���� ����� ��ȭ��ȣ �����ϱ�
-	public boolean updatephoneNumber(String storeName,String storenumber) throws SQLException, NotExistException{
+	// 가게 번호 변경
+	public boolean updatephoneNumber(String storeName, String storenumber) throws SQLException, NotExistException{
 		return storeDAO.updateAddress(storeName,storenumber);
-	}	
-	// �������� ����
+	}
+	
+	// 가게 정보 삭제
 	public boolean deleteStore(String storeName) throws SQLException, NotExistException{
 		return storeDAO.deleteStore(storeName);
 	}	

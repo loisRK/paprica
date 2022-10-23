@@ -22,27 +22,7 @@ public class customerController {
 		return instance;
 	}
 	
-//	-----------customer--------------
-	// 전체 고객 검색
-	public void allCustomer(){
-		try{
-			customerEndview.customerListView(cusService.getAllCustomers());
-		}catch(SQLException s){
-			s.printStackTrace();
-			customerEndview.showError("모든 고객 검색시 에러 발생");
-		}
-	}
-	
-	// 고객 한명 검색
-	public void OneCustomer(String customerId) throws NotExistException{
-		try{
-			customerEndview.customerList(cusService.getCustomer(customerId));
-		}catch(SQLException s){
-			s.printStackTrace();
-			customerEndview.showError("프로젝트 검색시 에러 발생");
-		}
-	}
-	
+//	------------customer (계진)--------------
 	// 비밀번호 변경
 	public void updatepassword(String customerId, String customerPassword) throws NotExistException{
 		try{
@@ -77,7 +57,7 @@ public class customerController {
 	public void deleteCustomer(String customerId) throws NotExistException {
 		try {
 			cusService.deleteCustomer(customerId);
-		}catch(SQLException e) {
+		}catch(SQLException | NotExistException e) {
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +72,7 @@ public class customerController {
 	}
 	
 	
-//	----------product--------------
+//	--------------product (우성)--------------
 	// 이름으로 물건 검색
 	public void getProductName(String productName) {
 		try {
@@ -124,7 +104,7 @@ public class customerController {
 	}
 	
 	
-//	--------------purchase----------------
+//	--------------purchase (륜경)----------------
 	// 모든 구매 내역 확인
 	public void getAllPurchase(String cusID) {
 		try {
@@ -144,14 +124,31 @@ public class customerController {
 	}
 	
 	// 제품 구매
-	public void newPurchase(String productID, String customerID) {
+	public void newPurchase(int productID, String customerID, int count) {
 		try {
-			customerEndview.purchaseCheck(purService.purchaseHistory(productID, customerID));
+			customerEndview.purchaseCheck(purService.purchaseHistory(productID, customerID, count));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	// 장바구니 담기 (륜경)
+//	public void addCart(int productID, String customerID, int count) {
+//		try {
+//			customerEndview.purchaseCheck(proService.addCart(productID, customerID, count));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+	// 구매 내역 수정 (order_status : 주문접수 인 경우에만 수정할 수 있는 메소드)
+	public void editPurchase(int orderID, int productID, int changeCnt) {
+		try {
+			customerEndview.purchaseCheck(purService.editPurchaseCnt(orderID, productID, changeCnt));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

@@ -1,10 +1,13 @@
 package paprika.view;
 
 import java.util.ArrayList;
+
+import paprika.dto.customerDTO;
 import paprika.dto.productDTO;
 
 public class managerEndview {
 
+//	-----------product 관련---------------
 	// 상품 출력
 	public static void productListView(ArrayList<productDTO> allProduct) {
 		int length = allProduct.size();
@@ -15,7 +18,6 @@ public class managerEndview {
 			}
 		}
 	}
-	
 	
 	// 상품 등록 성공 여부
 	public static void checkAddProdcut(productDTO addProduct) {
@@ -39,4 +41,25 @@ public class managerEndview {
 	public static void showError(String msg) {
 		System.out.println(msg);
 	}
+	
+	
+//	-----------customer 관련---------------
+	public static void allListView(ArrayList allOrder){
+		int length = allOrder.size();
+		if( length != 0 ){
+			for(int index = 0; index < length; index++){         
+				System.out.println("검색정보 " + (index+1) + " - " + allOrder.get(index));
+			}
+		}
+	}
+   
+	public static void customerList(customerDTO oneOrder){
+		System.out.println(oneOrder);      
+	}
+	
+	
+	
+	
+	
+	
 }
