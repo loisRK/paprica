@@ -21,9 +21,9 @@ public class managerController {
 	
 	// 특정 고객 정보 검색
 	
-	// 특정 고객 모든 구매 내역 검색
-	
 	// 고객 등급 수정
+	
+	// 특정 고객 모든 구매 내역 검색 (륜경)
 
 	
 //	   <품목 관리>	
@@ -37,6 +37,7 @@ public class managerController {
 		}
 	}
 	
+	
 	// 특정 품목 정보 검색
 	public void getProduct(String productName) {
 		try {
@@ -46,6 +47,7 @@ public class managerController {
 			managerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
 		}
 	}
+	
 	
 	// 새로운 품목 등록
 	public void adddProduct(int proID, String storeID, String proName, String proCategory, int proPrice, int proCnt) {
@@ -88,7 +90,7 @@ public class managerController {
 	}
 	
 	
-	// 특정 품목 판매 이력 검색
+	// 특정 품목 판매 이력 검색 (륜경)
 	
 
 	

@@ -10,7 +10,7 @@ import paprika.dto.customerDTO;
 import paprika.util.DBUtil;
 
 public class customerDAO {
-	// °í°´ Ãß°¡ÇÏ±â
+	// ê³ ê° ì •ë³´ ì¶”ê°€
 	public static boolean addCustomer(customerDTO customer) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -38,7 +38,7 @@ public class customerDAO {
 
 	}
 
-	// °í°´ Á¤º¸¸¦ »èÁ¦ÇÏ±â
+	// ê³ ê° ì •ë³´ ì‚­ì œ
 	public static boolean deleteCustomer(String customerid) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -58,7 +58,7 @@ public class customerDAO {
 		return false;
 	}
 	
-	// id¸¦ ÅëÇÑ °í°´Á¤º¸¸¦ ¹İÈ¯
+	// ì•„ì´ë””ë¡œ ê³ ê° ì •ë³´ ì¡°íšŒ
 	public static customerDTO getCustomer (String customerId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -77,7 +77,7 @@ public class customerDAO {
 		}return customer;
 	}
 	
-	// ¸ğµç °í°´µé ¸®½ºÆ®¸¦ ¹İÈ¯
+	// ëª¨ë“  ê³ ê° ì •ë³´ ë³´ê¸°
 	public static ArrayList<customerDTO> getAllCustomers() throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -99,7 +99,7 @@ public class customerDAO {
 		return list;
 	}
 	
-	// °í°´ ¾ÆÀÌµğ¸¦ ÅëÇÑ ºñ¹Ğ¹øÈ£ º¯°æ
+	// ê³ ê° ë¹„ë°€ë²ˆí˜¸ ë³€ê²½
 	public static boolean updatePassword (String customerId, String customerPassword) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -117,7 +117,8 @@ public class customerDAO {
 			DBUtil.close(con, pstmt);
 		}return false;
 	}
-	// °í°´ ¾ÆÀÌµğ¸¦ ÁÖ¼Ò º¯°æ
+	
+	// ê³ ê° ì£¼ì†Œ ë³€ê²½
 	public static boolean updateAddress (String customerId, String address) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +135,8 @@ public class customerDAO {
 			DBUtil.close(con, pstmt);
 		}return false;
 	}
-	// °í°´ ¾ÆÀÌµğ¸¦ ÅëÇÑ ÀüÈ­¹øÈ£ º¯°æ
+	
+	// ê³ ê° ì „í™”ë²ˆí˜¸ ë³€ê²½
 	public static boolean updatephoneNumber (String customerId, String phoneNumber) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
