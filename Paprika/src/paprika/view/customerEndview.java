@@ -13,10 +13,10 @@ public class customerEndview {
 	       System.out.println(oneOrder);      
 	    }
 		
-		//  異�
+	 // 상품 출력
 		public static void productListView(ArrayList<productDTO> allProduct) {
 			int length = allProduct.size();
-			System.out.println("[寃 寃곌낵] 珥 " + length + "媛  寃듬.");
+			System.out.println("[검색 결과] 총 " + length + "개의 상품이 검색되었습니다.");
 			if (length != 0) {
 				for(int i = 0; i<length; i++) {
 					System.out.println(i +  ". " + allProduct.get(i));

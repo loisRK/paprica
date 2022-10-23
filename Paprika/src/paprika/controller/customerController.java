@@ -102,6 +102,7 @@ public class customerController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 
 	// 비밀번호 변경
 	public void updatepassword(String customerId, String customerPassword) throws NotExistException{
