@@ -1,6 +1,7 @@
 package paprika.controller;
 
 import java.sql.SQLException;
+
 import paprika.service.customerService;
 import paprika.service.productService;
 import paprika.service.purchaseService;
@@ -154,10 +155,20 @@ public class customerController {
 //		}
 //	}
 	
-	// 구매 내역 수정 (order_status : 주문접수 인 경우에만 수정할 수 있는 메소드)
-	public void editPurchase(int orderID, int productID, int changeCnt) {
+	// 수정 가능한 내역 보여주기
+	public void getEditInfo(String colName, String colValue) {
 		try {
-			customerEndview.purchaseCheck(purService.editPurchaseCnt(orderID, productID, changeCnt));
+			purService.getEditList(colValue);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	// 구매 내역 수정 (order_status : 주문접수 인 경우에만 수정할 수 있는 메소드)
+	public void editPurchase(int orderID, int changeCnt) {
+		try {
+			customerEndview.purchaseCheck(purService.editPurchaseCnt(orderID, changeCnt));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

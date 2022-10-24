@@ -62,7 +62,10 @@ public class stratView {
 //		cusController.newPurchase(2001, "A123", 8);
 		
 //		System.out.println("---주문 수정---");
-		cusController.editPurchase(8, 4001, 3);
+	    // 3번버튼 누르면 회원아이디로 구매한 내역 중 주문준비 상태 내역만 보여주기
+	    cusController.getEditInfo("cus_id", "lois");
+	    // 주문번호, 변경 수량 입력하여 주문 수정하기
+		cusController.editPurchase(6, 3);
 	    
 //	    System.out.println("---특정 구매 내역 조회---");
 //	    cusController.getPurchaseInfo("cus_id", "lois");
