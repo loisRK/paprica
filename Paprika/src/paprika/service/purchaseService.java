@@ -34,13 +34,9 @@ public class purchaseService {
 	
 	// 특정 컬럼으로 구매이력 조회하기
 	public ArrayList<purchaseDTO> getPurchaseHistory(String colName, String colValue) throws SQLException {
-		
 			if(colName.equals("pro_id") || colName.equals("order_id")) {
 			return purchaseDAO.getSomePurchaseInt(colName, Integer.valueOf(colValue));
-		
 		}
-		
-		
 		return purchaseDAO.getSomePurchase(colName, colValue);
 	}
 		
