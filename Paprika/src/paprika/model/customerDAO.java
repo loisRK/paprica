@@ -37,26 +37,6 @@ public class customerDAO {
 	return false;
 
 	}
-
-	// 고객 정보 삭제
-	public static boolean deleteCustomer(String customerid) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = DBUtil.getConnection();
-
-			pstmt = con.prepareStatement("DELETE FROM customer WHERE cus_id=?");
-			pstmt.setString(1, customerid);
-
-			int result = pstmt.executeUpdate();
-			if (result == 1) {
-				return true;
-			}
-		} finally {
-			DBUtil.close(con, pstmt);
-		}
-		return false;
-	}
 	
 	// 아이디로 고객 정보 조회
 	public static customerDTO getCustomer (String customerId) throws SQLException{
@@ -175,10 +155,7 @@ public class customerDAO {
                "WHEN z >= 30000 and z <40000 THEN 4\r\n" + 
                "WHEN z >= 40000 and z <1000000000 THEN 5\r\n" + 
                "else 1 \r\n" + 
-               "end);\r\n" + 
-               "select * from customer;");
-
-            
+               "end);\r\n");
          int result = pstmt.executeUpdate();
             if(result == 1) {
                return true;
@@ -187,6 +164,46 @@ public class customerDAO {
          DBUtil.close(con, pstmt);
       }return false;
    }
+
+   public static boolean deleteCustomer(String customerid, String customer_pw) throws SQLException {
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   try {
+	      con = DBUtil.getConnection();
+	
+	      pstmt = con.prepareStatement("DELETE FROM customer WHERE cus_id=? and cus_pw=?");
+	      pstmt.setString(1, customerid);
+	      pstmt.setString(2, customer_pw);
+	
+	      int result = pstmt.executeUpdate();
+	      if (result == 1) {
+	         return true;
+	      }
+	   } finally {
+	      DBUtil.close(con, pstmt);
+	   }
+	   return false;
+	}
+
+   	//--------------------------------------------- 로그인하기 (계진)
+	public static customerDTO login (String customerId,String customerPW) throws SQLException{
+	   Connection con = null;
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   customerDTO customer = null;
+	   try {
+	      con = DBUtil.getConnection();
+	      pstmt = con.prepareStatement("SELECT * FROM customer WHERE cus_id =? and cus_pw=?");
+	         pstmt.setString(1, customerId);
+	         pstmt.setString(2, customerPW);
+	         rset = pstmt.executeQuery();
+	         if(rset.next()) {
+	            customer = new customerDTO(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getInt(5),rset.getString(6),rset.getString(7));
+	         }
+	   }finally {
+	      DBUtil.close(con, pstmt, rset);
+	   }return customer;
+	}
 	
 		
 }

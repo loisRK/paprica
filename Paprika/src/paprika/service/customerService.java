@@ -45,12 +45,12 @@ public class customerService {
    // 개인정보 수정
    public boolean updateAddress(String customerId,String address) throws SQLException, NotExistException{
       NotExistException(customerId);
-   return customerDAO.updateAddress(customerId, address);
+      return customerDAO.updateAddress(customerId, address);
    }
    
    public boolean updatePassword(String customerId,String customerPassword) throws SQLException, NotExistException{
       NotExistException(customerId);
-   return customerDAO.updatePassword(customerId, customerPassword);
+      return customerDAO.updatePassword(customerId, customerPassword);
    }
    
    public boolean updatePhonenumber(String customerId, String phoneNumber) throws SQLException, NotExistException{
@@ -63,12 +63,19 @@ public class customerService {
 	   return customerDAO.updatecustomerGrade();
    }
    
-   // 개인정보 삭제
-   public boolean deleteCustomer(String customerId) throws SQLException, NotExistException{
-      customerDTO customerCheck = customerDAO.getCustomer(customerId);
-      if(customerCheck == null) {
-    	  throw new NotExistException("존재하지 않는 회원입니다.");
+   // 개인정보 삭제 (계진)
+   public boolean deleteCustomer(String customerId, String customerPW) throws SQLException, NotExistException{
+      customerDTO customer = customerDAO.getCustomer(customerId);
+      if(customer == null){
+         throw new NotExistException("존재하지 않는 아이디입니다.");
       }
-      return customerDAO.deleteCustomer(customerId);
+      NotExistException(customerId);
+      return customerDAO.deleteCustomer(customerId, customerPW);
+   }
+   
+   // 로그인 (계진)
+   public customerDTO login(String customerId, String customerPW) throws SQLException, NotExistException{
+      NotExistException(customerId);
+      return customerDAO.login(customerId, customerPW);
    }
 }

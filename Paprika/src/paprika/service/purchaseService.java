@@ -32,23 +32,16 @@ public class purchaseService {
 		}
 	}
 	
-	// 품번으로 해당 품목 구매이력 모두 조회하기
-	public ArrayList<purchaseDTO> getAllPurchaseByPID(int productID) throws SQLException {
-		return purchaseDAO.getAllPurchaseByPID(productID);
-	}
-
-	// 고객 아이디로 구매한 모든 이력 반환
-	public ArrayList<purchaseDTO> getAllPurchase(String cusID) throws SQLException {
-		return purchaseDAO.getAllPurchase();
-	}
-	
-	// productID, customerID, orderID 중 지정한 정보로 해당하는 구매 이력 반환
+	// 특정 컬럼으로 구매이력 조회하기
 	public ArrayList<purchaseDTO> getPurchaseHistory(String colName, String colValue) throws SQLException {
+		if(colName.equals("pro_id") || colName.equals("order_id")) {
+			return purchaseDAO.getSomePurchaseInt(colName, Integer.valueOf(colValue));
+		}
 		return purchaseDAO.getSomePurchase(colName, colValue);
 	}
 		
 	// 제품 구매 - 새로운 구매 이력 저장 및 구매 내역확인(출력)
-	public purchaseDTO purchaseHistory(int productID, String customerID, int count) throws SQLException{
+	public purchaseDTO purchaseProduct(int productID, String customerID, int count) throws SQLException{
 		Date date = new Date();
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String orderDate = dFormat.format(date);	// 주문 시점 날짜 string 타입으로 생성
@@ -70,6 +63,13 @@ public class purchaseService {
 		// auto-increment test - addPurchaseTest
 		purchaseDAO.addPurchase(newOrder);
 		return purchaseDAO.getOnePurchase(orderCount);
+	}
+	
+	// 재고와 수량이 맞는지 확인
+	public boolean checkStack(int changeCnt) {
+		
+		
+		return false;
 	}
 	
 	// 구매수량 변경

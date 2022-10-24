@@ -39,37 +39,7 @@ public class purchaseDAO {
 		return false;
 	}
 	
-	// 전체 주문 내역 조회
-	public static ArrayList<purchaseDTO> getAllPurchase() throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<purchaseDTO> list = null;
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from purchase");
-			rset = pstmt.executeQuery();
-
-			list = new ArrayList<purchaseDTO>();
-			while (rset.next()) {
-				list.add(new purchaseDTO(rset.getInt(1),
-										  rset.getInt(2), 
-										  rset.getString(3),
-										  rset.getInt(4),
-										  rset.getString(5),
-										  rset.getString(6),
-										  rset.getString(7),
-										  rset.getString(8),
-										  rset.getString(9),
-										  rset.getString(10)));
-			}
-		} finally {
-			DBUtil.close(con, pstmt, rset);
-		}
-		return list;
-	}
-	
-	// 특정 주문 내역 조회
+	// 특정 주문 내역 조회(한 건 조회)
 	public static purchaseDTO getOnePurchase(int orderID) throws SQLException {
 		Connection con = null;
 		Statement stmt = null;
@@ -98,7 +68,7 @@ public class purchaseDAO {
 		return purchaseOne;
 	}
 	
-	// 특정 주문 내역 조회(어떤 정보로 검색할지 키워드 설정)
+	// string type 컬럼명으로 해당하는 전체 구매 내역 조회
 	public static ArrayList<purchaseDTO> getSomePurchase(String colName, String colValue) throws SQLException {
 		Connection con = null;
 		Statement stmt = null;
@@ -129,17 +99,18 @@ public class purchaseDAO {
 		return list;
 	}
 	
-	// 특정 주문 내역 조회 - 자료형이 달라서 위에 식으로 적용 안됨
-	public static ArrayList<purchaseDTO> getAllPurchaseByPID(int productID) throws SQLException {
+	// int type 컬럼명으로 해당하는 전체 구매 내역 조회
+	public static ArrayList<purchaseDTO> getSomePurchaseInt(String colName, int colValue) throws SQLException {
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<purchaseDTO> list = null;
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from purchase where pro_id = ?");
-			pstmt.setInt(1, productID);
-			rset = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery("select * from purchase where "
+										+ colName + " = " + colValue);
+
 			list = new ArrayList<purchaseDTO>();
 			while (rset.next()) {
 				list.add(new purchaseDTO(rset.getInt(1),
@@ -154,11 +125,10 @@ public class purchaseDAO {
 										  rset.getString(10)));
 			}
 		} finally {
-			DBUtil.close(con, pstmt, rset);
+			DBUtil.close(con, stmt, rset);
 		}
 		return list;
 	}
-	
 	
 	// 주문상태 변경(update)
 	public static boolean updatePurchaseStatus(String status, String orderID) throws SQLException {

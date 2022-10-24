@@ -8,6 +8,7 @@ import paprika.service.storeService;
 import paprika.dto.customerDTO;
 import paprika.exception.NotExistException;
 import paprika.view.customerEndview;
+import paprika.view.managerEndview;
 
 public class customerController {
 	private static customerController instance = new customerController();
@@ -53,15 +54,6 @@ public class customerController {
 		}
 	}
 
-	// 회원 탈퇴
-	public void deleteCustomer(String customerId) throws NotExistException {
-		try {
-			cusService.deleteCustomer(customerId);
-		}catch(SQLException | NotExistException e) {
-			e.printStackTrace();
-		}
-	}
-
 	// 회원 가입
 	public void insertCustomer(customerDTO customer) {
 		try {
@@ -70,6 +62,27 @@ public class customerController {
 			e.printStackTrace();
 		}
 	}
+	
+   // 로그인 하기------- 계진
+   public void login(String customerId, String customerPW) throws NotExistException{
+      try{
+         customerEndview.customerList(cusService.login(customerId, customerPW));
+      }catch(SQLException s){
+         s.printStackTrace();
+         managerEndview.showError("로그인시 에러 발생");
+      }
+   
+   }
+
+   // 회원 탈퇴 ----------------계진
+   public void deleteCustomer(String customerId, String customerPW) throws NotExistException {
+      try {
+         cusService.deleteCustomer(customerId, customerPW);
+      }catch(SQLException e) {
+    	  e.printStackTrace();
+    	  customerEndview.showError("잘못 입력하셨습니다.");
+      }
+   }
 	
 	
 //	--------------product (우성)--------------
@@ -108,7 +121,7 @@ public class customerController {
 	// 모든 구매 내역 확인
 	public void getAllPurchase(String cusID) {
 		try {
-			customerEndview.purchaseListView(purService.getAllPurchase(cusID));
+			customerEndview.purchaseListView(purService.getPurchaseHistory("cus_id", cusID));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -126,7 +139,7 @@ public class customerController {
 	// 제품 구매
 	public void newPurchase(int productID, String customerID, int count) {
 		try {
-			customerEndview.purchaseCheck(purService.purchaseHistory(productID, customerID, count));
+			customerEndview.purchaseCheck(purService.purchaseProduct(productID, customerID, count));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
