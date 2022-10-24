@@ -65,7 +65,7 @@ public class stratView {
 	    // 3번버튼 누르면 회원아이디로 구매한 내역 중 주문준비 상태 내역만 보여주기
 	    cusController.getEditInfo("cus_id", "lois");
 	    // 주문번호, 변경 수량 입력하여 주문 수정하기
-		cusController.editPurchase(6, 3);
+		cusController.editPurchase(4, 3);
 	    
 //	    System.out.println("---특정 구매 내역 조회---");
 //	    cusController.getPurchaseInfo("cus_id", "lois");

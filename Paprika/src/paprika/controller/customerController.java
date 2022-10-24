@@ -117,7 +117,6 @@ public class customerController {
 		}
 	}
 	
-	
 //	--------------purchase (륜경)----------------
 	// 모든 구매 내역 확인
 	public void getAllPurchase(String cusID) {
@@ -158,7 +157,7 @@ public class customerController {
 	// 수정 가능한 내역 보여주기
 	public void getEditInfo(String colName, String colValue) {
 		try {
-			purService.getEditList(colValue);
+			customerEndview.purchaseListView(purService.getEditList(colValue));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
