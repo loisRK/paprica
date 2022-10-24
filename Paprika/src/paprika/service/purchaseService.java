@@ -32,18 +32,11 @@ public class purchaseService {
 		}
 	}
 	
-	// 고객 아이디로 구매한 모든 이력 반환
-	public ArrayList<purchaseDTO> getAllPurchase(String cusID) throws SQLException {
-		return purchaseDAO.getAllPurchase();
-	}
-	
-	// 품번으로 해당 품목 구매이력 모두 조회하기
-	public ArrayList<purchaseDTO> getAllPurchaseByPID(int productID) throws SQLException {
-		return purchaseDAO.getAllPurchaseByPID(productID);
-	}
-	
-	// productID, customerID, orderID 중 지정한 정보로 해당하는 구매 이력 반환
+	// 특정 컬럼으로 구매이력 조회하기
 	public ArrayList<purchaseDTO> getPurchaseHistory(String colName, String colValue) throws SQLException {
+		if(colName.equals("pro_id") || colName.equals("order_id")) {
+			return purchaseDAO.getSomePurchaseInt(colName, Integer.valueOf(colValue));
+		}
 		return purchaseDAO.getSomePurchase(colName, colValue);
 	}
 		

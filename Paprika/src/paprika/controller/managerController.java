@@ -54,7 +54,7 @@ public class managerController {
 	// 특정 고객 모든 구매 내역 검색 (륜경)
 	public void getCustomerHistory(String customerID) {
 		try {
-			managerEndview.allListView(purService.getAllPurchase(customerID));
+			managerEndview.allListView(purService.getPurchaseHistory("cus_id", customerID));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,9 +120,9 @@ public class managerController {
 	}
 	
 	// 특정 품목 판매 이력 검색 (륜경)
-	public void getProductHistory(int productID) {
+	public void getProductHistory(String productID) {
 		try {
-			managerEndview.allListView(purService.getAllPurchaseByPID(productID));
+			managerEndview.allListView(purService.getPurchaseHistory("pro_id", productID));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
