@@ -34,9 +34,13 @@ public class purchaseService {
 	
 	// 특정 컬럼으로 구매이력 조회하기
 	public ArrayList<purchaseDTO> getPurchaseHistory(String colName, String colValue) throws SQLException {
-		if(colName.equals("pro_id") || colName.equals("order_id")) {
+		
+			if(colName.equals("pro_id") || colName.equals("order_id")) {
 			return purchaseDAO.getSomePurchaseInt(colName, Integer.valueOf(colValue));
+		
 		}
+		
+		
 		return purchaseDAO.getSomePurchase(colName, colValue);
 	}
 		
@@ -72,8 +76,24 @@ public class purchaseService {
 		return false;
 	}
 	
+	// 주문 수정 가능 리스트 불러오기
+	public ArrayList<purchaseDTO> getEditList(String customerID) throws SQLException{
+		ArrayList<purchaseDTO> purList = purchaseDAO.getSomePurchase("cus_id", customerID);
+		ArrayList<purchaseDTO> editList = null;
+		int length = purList.size();
+		if (length != 0) {
+			editList = new ArrayList<purchaseDTO>();
+			for(int i = 0; i<length; i++) {
+				if(purList.get(i).getOrderStatus().equals("주문접수")) {
+					editList.add(purList.get(i));
+				}
+			}
+		}
+		return editList;
+	}
+	
 	// 구매수량 변경
-	public purchaseDTO editPurchaseCnt(int orderID, int productID, int changeCnt) throws SQLException{
+	public purchaseDTO editPurchaseCnt(int orderID, int changeCnt) throws SQLException{
 		purchaseDTO pInfo = purchaseDAO.getOnePurchase(orderID);
 		if(pInfo.getOrderStatus().equals("주문접수")) {
 			// 재고수량확인해서 변경가능한지 여부 확인할 수 있음
