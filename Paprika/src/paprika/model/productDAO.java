@@ -90,7 +90,7 @@ public class productDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM product WHERE product_name=?");
+			pstmt = con.prepareStatement("SELECT * FROM product WHERE pro_name=?");
 			pstmt.setString(1, productName);
 			rset = pstmt.executeQuery();
 
@@ -127,7 +127,7 @@ public class productDAO {
 	}
 	
 	// 특정 상품 수량 수정
-	public static boolean updateCount(String productID, int productCnt) throws SQLException {
+	public static boolean updateCount(int productID, int productCnt) throws SQLException {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -135,7 +135,7 @@ public class productDAO {
 
 				pstmt = con.prepareStatement("UPDATE product SET pro_cnt = ? WHERE pro_name=?");
 				pstmt.setInt(1, productCnt);
-				pstmt.setString(2, productID);
+				pstmt.setInt(2, productID);
 
 				int result = pstmt.executeUpdate();
 				if (result == 1) {

@@ -31,6 +31,11 @@ public class managerEndview {
 		System.out.println(productName + "[" + productId + "]의 가격이 " + productPrice + "으로 변동되었습니다.");
 	}
 	
+	// 상품 개수 변경 성공 여부
+	public static void checkUpdateCount(String productName,int productId, int productCnt) {
+		System.out.println(productName + "[" + productId + "]의 개수가 " + productCnt + "으로 변동되었습니다.");
+	}
+	
 	// 상품 삭제 성공 여부
 	public static void checkDeleteProduct(String productName) {
 		System.out.println(productName + "이 삭제되었습니다.");

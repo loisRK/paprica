@@ -2,21 +2,17 @@ package paprika.controller;
 
 import java.sql.SQLException;
 
+import paprika.dto.customerDTO;
+import paprika.exception.NotExistException;
 import paprika.service.customerService;
 import paprika.service.productService;
 import paprika.service.purchaseService;
-import paprika.service.storeService;
-import paprika.dto.customerDTO;
-import paprika.exception.NotExistException;
 import paprika.view.customerEndview;
-import paprika.view.managerEndview;
 
 public class customerController {
 	private static customerController instance = new customerController();
-	
+	private productService proservice = productService.getInstance();
 	private purchaseService purService = purchaseService.getInstance();
-	private storeService stoService = storeService.getInstance();
-	private productService proService = productService.getInstance();
 	private customerService cusService = customerService.getInstance();
 	
 	private customerController() {}
@@ -24,99 +20,47 @@ public class customerController {
 		return instance;
 	}
 	
-//	------------customer (계진)--------------
-	// 비밀번호 변경
-	public void updatepassword(String customerId, String customerPassword) throws NotExistException{
-		try{
-			cusService.updatePassword(customerId, customerPassword);
-		}catch(SQLException s){
-			s.printStackTrace();
-			customerEndview.showError("고객 검색시 에러 발생");
-		}
-	}
-	
-	// 주소 변경 
-	public void updateAddress(String customerId, String customerAddress) throws NotExistException{
-		try{
-			cusService.updateAddress(customerId, customerAddress);
-		}catch(SQLException s){
-			s.printStackTrace();
-			customerEndview.showError("고객 검색시 에러 발생");
-		}
-	}
-	
-	// 핸드폰 번호 변경
-	public void updatePhone(String customerId, String phoneNumber) throws NotExistException{
-		try{
-			cusService.updatePhonenumber(customerId, phoneNumber);
-		}catch(SQLException s){
-			s.printStackTrace();
-			customerEndview.showError("고객 검색시 에러 발생");
-		}
-	}
-
-	// 회원 가입
-	public void insertCustomer(customerDTO customer) {
+//	--------------product (우성)--------------
+	// 모든 상품 검색
+	public void getAllProduct() {
 		try {
-			cusService.addCustomer(customer);
+			customerEndview.productListView(proservice.getAllProduct());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-   // 로그인 하기------- 계진
-   public void login(String customerId, String customerPW) throws NotExistException{
-      try{
-         customerEndview.customerList(cusService.login(customerId, customerPW));
-      }catch(SQLException s){
-         s.printStackTrace();
-         managerEndview.showError("로그인시 에러 발생");
-      }
-   
-   }
-
-   // 회원 탈퇴 ----------------계진
-   public void deleteCustomer(String customerId, String customerPW) throws NotExistException {
-      try {
-         cusService.deleteCustomer(customerId, customerPW);
-      }catch(SQLException e) {
-    	  e.printStackTrace();
-    	  customerEndview.showError("잘못 입력하셨습니다.");
-      }
-   }
-	
-	
-//	--------------product (우성)--------------
-	// 이름으로 물건 검색
+	// 이름으로 상품 검색
 	public void getProductName(String productName) {
 		try {
-			customerEndview.productListView(proService.getProductName(productName));
+			customerEndview.productListView(proservice.getProductName(productName));
 		} catch (SQLException | NotExistException e) {
 			e.printStackTrace();
 			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
 		}
 	}
 	
-	// 카테고리별로 물건 검색
+	// 카테고리별로 상품 검색
 	public void getProductCategory(String productCategory) {
 		try {
-			customerEndview.productListView(proService.getProductCategory(productCategory));
+			customerEndview.productListView(proservice.getProductCategory(productCategory));
 		} catch (SQLException | NotExistException e) {
 			e.printStackTrace();
 			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
 		}
 	}
 	
-	// 가격으로 물건검색
+	// 가격으로 상품 검색
 	public void getProductPrice(int minPrice, int maxPrice) {
 		try {
-			customerEndview.productListView(proService.getProductPrice(minPrice, maxPrice));
+			customerEndview.productListView(proservice.getProductPrice(minPrice, maxPrice));
 		} catch (SQLException | NotExistException e) {
 			e.printStackTrace();
 			customerEndview.showError("상품 조회 중 오류가 발생하였습니다.");
 		}
 	}
-	
+// -----------------------------------------------------------------------------------------------------
+
 //	--------------purchase (륜경)----------------
 	// 모든 구매 내역 확인
 	public void getAllPurchase(String cusID) {
@@ -145,15 +89,6 @@ public class customerController {
 		}
 	}
 	
-	// 장바구니 담기 (륜경)
-//	public void addCart(int productID, String customerID, int count) {
-//		try {
-//			customerEndview.purchaseCheck(proService.addCart(productID, customerID, count));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	// 수정 가능한 내역 보여주기
 	public void getEditInfo(String colName, String colValue) {
 		try {
@@ -172,7 +107,75 @@ public class customerController {
 			e.printStackTrace();
 		}
 	}
+// -----------------------------------------------------------------------------------------------------
+
+//	------------customer (계진)--------------
+	// 비밀번호 변경
+		public void updatepassword(String customerId, String customerPassword) {
+			try{
+				cusService.updatePassword(customerId, customerPassword);
+			}catch(SQLException | NotExistException s){
+				s.printStackTrace();
+				customerEndview.showError("고객 검색시 에러 발생");
+			}
+		}
+		
+		// 주소 변경 
+		public void updateAddress(String customerId, String customerAddress) {
+			try{
+				cusService.updateAddress(customerId, customerAddress);
+			}catch(SQLException | NotExistException s){
+				s.printStackTrace();
+				customerEndview.showError("고객 검색시 에러 발생");
+			}
+		}
+		
+		// 핸드폰 번호 변경
+		public void updatePhone(String customerId, String phoneNumber) {
+			try{
+				cusService.updatePhonenumber(customerId, phoneNumber);
+			}catch(SQLException | NotExistException s){
+				s.printStackTrace();
+				customerEndview.showError("고객 검색시 에러 발생");
+			}
+		}
+
+		// 회원 가입
+		public void insertCustomer(customerDTO customer) {
+			try {
+				cusService.addCustomer(customer);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	   // 회원 탈퇴 ----------------계진
+	   public void deleteCustomer(String customerId, String customerPW) {
+	      try {
+	         cusService.deleteCustomer(customerId, customerPW);
+	      }catch(SQLException | NotExistException e) {
+	    	  e.printStackTrace();
+	    	  customerEndview.showError("잘못 입력하셨습니다.");
+	      }
+	   }
+// -----------------------------------------------------------------------------------------------------
 	
 	
+	// [우성] ID유무 확인 ------------------------------------------------------------------
+	public boolean checkId(String customerId) {
+		return cusService.checkId(customerId);
+	}
+	//---------------------------------------------------------------------------------
 	
+	// [우성] ID유무 확인 ------------------------------------------------------------------
+	public boolean checkPw(String customerId, String customerPw) {
+		return cusService.checkPw(customerId, customerPw);
+	}
+	//---------------------------------------------------------------------------------
+	
+	// [우성] 회원/관리자 구분 ------------------------------------------------------------
+	public boolean checkManager(String customerId) {
+		return cusService.checkManager(customerId);
+	}
+	//---------------------------------------------------------------------------------
 }

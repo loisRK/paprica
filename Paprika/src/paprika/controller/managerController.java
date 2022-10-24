@@ -32,20 +32,20 @@ public class managerController {
 	}
 
 	// 고객 한명 검색 (계진)
-	public void OneCustomer(String customerId) throws NotExistException{
+	public void OneCustomer(String customerId){
 	  try{
 	     managerEndview.customerList(cusService.getCustomer(customerId));
-	  }catch(SQLException s){
+	  }catch(SQLException | NotExistException s){
 	     s.printStackTrace();
 	     managerEndview.showError("프로젝트 검색시 에러 발생");
 	  }
 	}
 	
 	// 고객 등급변경 (계진)
-	public void customergrade() throws NotExistException{
+	public void customergrade() {
 	  try{
 	     cusService.updatecustomerGrade();
-	  }catch(SQLException s){
+	  }catch(SQLException | NotExistException s){
 	     s.printStackTrace();
 	     managerEndview.showError("프로젝트 검색시 에러 발생");
 	  }
@@ -56,7 +56,6 @@ public class managerController {
 		try {
 			managerEndview.allListView(purService.getPurchaseHistory("cus_id", customerID));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -75,7 +74,7 @@ public class managerController {
 	}
 	
 	// 특정 품목 정보 검색 (우성)
-	public void getProduct(String productName) {
+	public void getProductName(String productName) {
 		try {
 			managerEndview.productListView(proservice.getProductName(productName));
 		} catch (SQLException | NotExistException e) {
@@ -108,6 +107,18 @@ public class managerController {
 		}
 	}
 	
+	// 특정 품목 개수 수정 (우성)
+	public void updateCount(int productId, int productCnt) {
+		try {
+			if(proservice.updateCount(productId, productCnt) == true) {
+				String getProductName = proservice.callProduct(productId).getProName();
+				managerEndview.checkUpdateCount(getProductName, productId, productCnt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 특정 품목 삭제 (우성)
 	public void deleteProduct(String productName) {
 		try {
@@ -124,10 +135,8 @@ public class managerController {
 		try {
 			managerEndview.allListView(purService.getPurchaseHistory("pro_id", productID));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 	
 }

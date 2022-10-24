@@ -94,7 +94,7 @@ public class productService {
 	}
 
 	// 이름으로 특정 품목 수량 수정
-	public boolean updateCount(String productID, int productCnt) throws SQLException {
+	public boolean updateCount(int productID, int productCnt) throws SQLException {
 		return productDAO.updateCount(productID, productCnt);
 	}
 	// ---------------------------------------------------------------------------------------------------------------------------------------
@@ -119,9 +119,4 @@ public class productService {
 		productDTO getProduct = productDAO.getProductId(productId);
 		return getProduct;
 	}
-	
-	
-	
-	// 장바구니 담기 (륜경)
-//	public void 
 }

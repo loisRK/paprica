@@ -1,11 +1,11 @@
 package paprika.dto;
 
 public class storeDTO {
-	private String storeID;		// 사업자번호
-	private String storeName;	// 가게명
-	private String ownerName;	// 사업자명
-	private String storeAdd;	// 가게 주소
-	private String storeNumber;	// 가게 번호
+	private String storeID;	//거래처 아이디
+	private String storeName;	// 거래처 명
+	private String ownerName;	// 거래처 사장님 이름
+	private String storeAdd;	// 거래처 주소
+	private String storeNumber;	// 거래처 전화번호
 	
 	storeDTO(){}
 
@@ -63,24 +63,5 @@ public class storeDTO {
 		return "storeDTO [storeID=" + storeID + ", storeName=" + storeName + ", ownerName=" + ownerName + ", storeAdd="
 				+ storeAdd + ", storeNumber=" + storeNumber + "]";
 	};
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

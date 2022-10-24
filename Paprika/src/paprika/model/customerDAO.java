@@ -57,6 +57,26 @@ public class customerDAO {
 		}return customer;
 	}
 	
+	// 비밀번호 확인하기
+	public static String checkPw(String customerId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		customerDTO customer = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("SELECT * FROM customer WHERE cus_id =?");
+				pstmt.setString(1, customerId);
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					customer = new customerDTO(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getInt(5),rset.getString(6),rset.getString(7));
+				}
+		}finally {
+			DBUtil.close(con, pstmt, rset);
+		}return customer.getCusPW();
+	}
+	
 	// 모든 고객 정보 보기
 	public static ArrayList<customerDTO> getAllCustomers() throws SQLException{
 		Connection con = null;

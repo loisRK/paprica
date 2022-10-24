@@ -78,4 +78,51 @@ public class customerService {
       NotExistException(customerId);
       return customerDAO.login(customerId, customerPW);
    }
+   
+// [우성] id 확인------------------------------------------------------------------
+   public boolean checkId(String customerId) {
+	   customerDTO customerCheck = null;
+	   try {
+		   customerCheck = customerDAO.getCustomer(customerId);
+	   } catch (SQLException e) {
+		   e.printStackTrace();
+	   }
+	   if(customerCheck != null) {
+		   return true;
+	   }
+	   return false;
+   }
+   //---------------------------------------------------------------------------------
+   
+   
+   // [우성] pw 확인------------------------------------------------------------------
+   public boolean checkPw(String customerId, String customerPw) {
+	   String customerCheck = null;
+	   try {
+		   customerCheck = customerDAO.checkPw(customerId);
+	   } catch (SQLException e) {
+		   e.printStackTrace();
+	   }
+	   if(customerCheck != null) {
+		   return true;
+	   }
+	   return false;
+   }
+   //---------------------------------------------------------------------------------
+   
+   
+   // [우성] 관리자/회원 구분 --------------------------------------------------------------
+   public boolean checkManager(String customerId) {
+	   int cusRank = 1;
+	   try {
+		   cusRank = customerDAO.getCustomer(customerId).getCusRank();
+	   } catch (SQLException e) {
+		   e.printStackTrace();
+	   }
+	   if(cusRank == 0) {
+		   return true;
+	   }
+	   return false;
+   }
+   //---------------------------------------------------------------------------------
 }
